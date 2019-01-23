@@ -1,0 +1,48 @@
+// TS FILE
+
+export class MkkComponent {
+
+  tableData: any = [];
+  showEditTable:boolean = false;
+  EditRowId:any = ''; 
+
+  constructor( private http:HttpClient) { 
+  
+    this.tableData = [
+      {name: "ajay" , mobile: '000000' , email: "dre@gmail.com"},
+      { name: "vijay" , mobile: "123455", email: 'app@mail.com'},
+      { name: "prasad" , mobile: '15789', email: 'mingl@.com'}
+    ]
+ 
+  }
+
+Edit(val) {
+  this.EditRowId = val;
+}
+
+}
+
+// HTML FILE
+
+<div class="container mt-2">
+    <table class="table col-lg-8 table-bordered table-sm" border="1">
+        <thead>
+            <tr>
+               
+            <th>NAME</th>
+            <th>MOBILE</th>
+            <th>EMAIL</th>  
+        </tr>        
+        </thead>
+        <tbody>
+            <tr *ngFor="let df of tableData">
+            <td *ngIf="df.name === EditRowId"><input type="text" [(ngModel)]="df.name"></td>
+            <td *ngIf="df.name !== EditRowId" (click)="Edit(df.name)">{{df.name}}</td>
+            <td *ngIf="df.mobile === EditRowId"><input type="text" [(ngModel)]="df.mobile"></td>
+            <td *ngIf="df.mobile !== EditRowId" (click)="Edit(df.mobile)">{{df.mobile}}</td>
+            <td *ngIf="df.email === EditRowId"><input type="text" [(ngModel)]="df.email"></td>
+            <td *ngIf="df.email !== EditRowId" (click)="Edit(df.email)">{{df.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
